@@ -3,30 +3,49 @@ import Edunova from "../Models/Model.js";
 export const memberReg = async (req, res) => {
   try {
     const { name, email, profilePicture, role, status, teams } = req.body;
-    console.log(name, email, profilePicture);
 
-    const member = await Edunova.create({
+    const formattedTeams = Array.isArray(teams) ? teams : [];
+
+    const Member = await Edunova.create({
       name,
       email,
-      profilePicture, // URL of the profile picture
-      status: status === 'active', // Convert status to boolean
+      profilePicture,
       role,
-      teams: teams ? teams.split(',') : [] // Convert teams to array if provided
+      status,
+      teams: formattedTeams
     });
-
-    console.log('Member created:', member);
 
     res.status(201).json({
       success: true,
       message: 'Member registered successfully',
-      member
+      Member
     });
   } catch (error) {
     console.error('Error registering member:', error);
 
     res.status(500).json({
       success: false,
-      message: 'Error registering member'
+      message: 'Error registering member',
+      error: error.message 
     });
   }
 };
+
+
+export const allMembers=async(req,res)=>{
+  try { 
+    const Members=await Edunova.find()
+    res.status(200).json({Members}) 
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const getMember=async(req,res)=>{
+  try {
+    const member=await Edunova.findOne({})
+  } catch (error) {
+    
+  }
+}
+

@@ -10,16 +10,15 @@ const edunova= new mongoose.Schema({
     email:{
         type:String
     },
-    status:{
-        type:Boolean,
-        default:true
-    },
+    status: {
+        type: String,
+        enum: ['active', 'inactive'], 
+        default: 'active'
+      },
     role:{
          type:String
     },
-    teams:{
-        type:String
-    }
+    teams: [{ type: String }]
 })
 
 const Edunova = mongoose.model('Edunova',edunova);
