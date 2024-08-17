@@ -41,11 +41,16 @@ export const allMembers=async(req,res)=>{
   }
 }
 
-export const getMember=async(req,res)=>{
+export const deleteMember = async (req, res) => {
   try {
-    const member=await Edunova.findOne({})
-  } catch (error) {
+    const memberId = req.params.id;
+    console.log(memberId);
     
+    await Edunova.findByIdAndDelete(memberId); 
+    res.status(200).json({ message: 'Member deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete member' });
   }
-}
+};
+
 

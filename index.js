@@ -9,7 +9,7 @@ const dbUrl = 'mongodb://localhost:27017/edunova';
 
 app.use(cors({
    origin: ["http://localhost:5173"],
-  methods: ["GET", "POST","PATCH","PUT" ]
+   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
 }));
 app.use(express.json()); 
 
