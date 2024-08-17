@@ -5,7 +5,7 @@ import userRouter from './Routes/Routes.js';
 
 const app = express();
 const port = 3000;
-const dbUrl = 'mongodb://localhost:27017/edunova';
+const dbUrl = 'mongodb+srv://aswinachuz894:Aswinmongodbatles@cluster0.cvp4dws.mongodb.net/edunova';
 
 app.use(cors({
    origin: ["http://localhost:5173"],
